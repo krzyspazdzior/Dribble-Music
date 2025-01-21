@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { Token } from '../../models/token.model';
@@ -15,15 +15,13 @@ import { HeaderComponent } from '../../shared/header/header.component';
 })
 
 
-export class CallbackComponent{
+export class CallbackComponent implements OnInit{
 
   code: string = '';
   accessToken: string | null = null;
 
   constructor(
-    private _route: ActivatedRoute, private _authService: AuthService, private _router: Router) {
-      this.callbackRefresh();
-    }
+    private _route: ActivatedRoute, private _authService: AuthService, private _router: Router) {}
 
     callbackRefresh(): void{
       const storedToken = localStorage.getItem('access_token');
@@ -61,31 +59,8 @@ export class CallbackComponent{
         }
       });
     }
-
-
-
-  // ngOnInit(): void {
-  //   this._route.queryParams.subscribe((params) => {
-  //     this.code = params['code'];
-  //     if (this.code) {
-  //       this._authService.getAccessToken(this.code).subscribe(
-  //         (token: Token) => {
-  //           if(token){
-  //             this.accessToken = token.access_token;
-  //             console.log('Token Dostępu: ', this.accessToken);
-
-  //           } else {
-  //             console.log('Nie mozna dokonac fetchu tokena')
-  //           }
-  //         },
-  //         (error) => console.error('Error getting access token:', error)
-  //       );
-  //     } else {
-  //       console.error('No code found in the URL');
-  //     }
-  //   });
-  // }
-  
-
-
+    
+    ngOnInit(): void {
+      this.callbackRefresh();
+    }
 }
