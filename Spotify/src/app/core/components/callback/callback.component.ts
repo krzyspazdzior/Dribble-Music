@@ -19,9 +19,13 @@ export class CallbackComponent implements OnInit{
 
   code: string = '';
   accessToken: string | null = null;
-
+  
   constructor(
     private _route: ActivatedRoute, private _authService: AuthService, private _router: Router) {}
+    
+    ngOnInit(): void {
+      this.callbackRefresh();
+    }
 
     callbackRefresh(): void{
       const storedToken = localStorage.getItem('access_token');
@@ -60,7 +64,4 @@ export class CallbackComponent implements OnInit{
       });
     }
     
-    ngOnInit(): void {
-      this.callbackRefresh();
-    }
 }
