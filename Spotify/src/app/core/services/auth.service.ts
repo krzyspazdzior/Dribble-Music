@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map, catchError } from 'rxjs';
-
+import { Token } from '../models/token.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class AuthService {
   private _redirectUri: string = 'http://localhost:4200/callback'
   private _profileUrl: string = 'https://api.spotify.com/v1/me';
 
-  constructor(private http: HttpClient) {}
+  constructor(private _http: HttpClient) {}
 
 
   private generateVerifier(length: number){
@@ -55,7 +55,7 @@ export class AuthService {
   }
 
 
-  getAccessToken(code: string): Observable<any> {
+  getAccessToken(code: string): Observable<Token> {
     
     const codeVerifier = localStorage.getItem('code_verifier');
     if (!codeVerifier) {
@@ -72,7 +72,7 @@ export class AuthService {
     const headers = new HttpHeaders()
     .set('Content-Type', 'application/x-www-form-urlencoded');
 
-    return this.http
+    return this._http
     .post<any>(this._authUrl, body, {headers}).pipe(
       map(resp => {
         if(resp && resp.access_token){

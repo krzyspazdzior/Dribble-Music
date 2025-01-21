@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { Token } from '../../models/token.model';
 
 @Component({
   selector: 'app-callback',
@@ -14,7 +15,7 @@ import { AuthService } from '../../services/auth.service';
 export class CallbackComponent implements OnInit{
 
   code: string = '';
-  accessToken: string | null = null;
+  accessToken: Token | null = null;
 
   constructor(
     private _route: ActivatedRoute,        
@@ -26,7 +27,7 @@ export class CallbackComponent implements OnInit{
       this.code = params['code'];
       if (this.code) {
         this._authService.getAccessToken(this.code).subscribe(
-          (token) => {
+          (token: Token) => {
             this.accessToken = token;
             console.log('Token Dostępu: ', this.accessToken);
           },
