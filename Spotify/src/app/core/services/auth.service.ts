@@ -44,7 +44,7 @@ export class AuthService {
     window.location.href = `https://accounts.spotify.com/authorize?${body.toString()}`;
   }
 
-   async generateCodeChallenge(codeVerifier: string){
+   async generateCodeChallenge(codeVerifier: string): Promise<string>{
     const data = new TextEncoder().encode(codeVerifier);
     const digest = await window.crypto.subtle.digest('SHA-256', data);
 
@@ -77,7 +77,7 @@ export class AuthService {
       map(resp => {
         if(resp && resp.access_token){
           this.saveToken(resp.access_token);
-          return resp.access_token;
+          return resp;
         }else{
             throw new Error('Blad: Nie otrzymano tokenu dostepu');
         }
@@ -91,8 +91,11 @@ export class AuthService {
       })
     );
   }
-  saveToken(token: string){
+  saveToken(token: string): void{
     localStorage.setItem('access_token', token);
+  }
+  saveRefreshToken(token: string){
+    localStorage.setItem('refresh_token', token)
   }
   removeToken(): void{
     localStorage.removeItem('access_token');
