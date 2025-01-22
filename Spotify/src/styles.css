@@ -1,0 +1,14 @@
+:root{
+    --background-black: #101010;
+    --main-font: #fafafa;
+}
+body, html{
+    background-color: #101010;
+}
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Helvetica, sans-serif;
+    color: var(--main-font);
+}
