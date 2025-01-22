@@ -3,17 +3,23 @@ header{
     background-color: #050505;
     padding: 15px 15px;
 }
+.vertical-line{
+    height: 30px;
+    width: 2px;
+    color: rgb(90, 90, 90);
+}
 .img-box{
     display: flex;
     align-items: center;
-    flex-basis: 60%;
+    flex-basis: 7%;
 }
 img{
     height: 60px;
 }
 nav{
-    flex-basis: 40%;
+    flex-basis: 35%;
     font-weight: bold;
+    
 }
 ul{
     display: flex;
@@ -21,7 +27,34 @@ ul{
     align-items: center;
     list-style: none;
     height: 100%;
+    
+}
+li{
+    filter: opacity(0.8);
+}
+li:hover{
+    filter: opacity(0.95);
 }
 a{
     text-decoration: none;
+}
+section{
+    margin-left: auto;
+    flex-basis: 15%;
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+}
+section>button{
+    width: 95px;
+    border: none;
+    background-color: #050505;
+    border-radius: 8px;
+    font-size: 15px;
+    padding: 10px 0;
+}
+
+section>button:hover{
+    text-shadow: 0 0 20px #fff;
 }

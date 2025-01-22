@@ -5,7 +5,6 @@ import { Token } from '../../models/token.model';
 import { of } from 'rxjs';
 import { catchError } from 'rxjs';
 import { HeaderComponent } from '../../shared/header/header.component';
-
 @Component({
   selector: 'app-callback',
   standalone: true,
@@ -63,5 +62,4 @@ export class CallbackComponent implements OnInit{
         }
       });
     }
-    
 }
