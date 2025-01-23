@@ -7,19 +7,19 @@ import { Profile } from '../models/profile.model';
   providedIn: 'root'
 })
 export class ProfileService {
-  private apiUrl = 'https://api.spotify.com/v1/me';  // URL API Spotify
+  private apiUrl = 'https://api.spotify.com/v1/me'; 
 
   constructor(private http: HttpClient) {}
 
 
-  // Metoda do pobierania profilu użytkownika
+
   getUserProfile(): Observable<Profile> {
     const accessToken = localStorage.getItem('access_token');
     if (!accessToken) {
-      throw new Error('Access token not found');  // Jeśli token nie istnieje, rzucamy błąd
+      throw new Error('Access token not found'); 
     }
 
     const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`);
-    return this.http.get<Profile>(this.apiUrl, { headers });  // Wysyłamy zapytanie z tokenem
+    return this.http.get<Profile>(this.apiUrl, { headers });  
   }
 }
