@@ -3,18 +3,21 @@
     padding: 15px 25px;
     border-radius: 5px;
     border: none;
+    font-size: 19px;
     
 }
 .center-area button:hover{
     color: var(--spotify-green);
     text-shadow: 0 0 3px var(--spotify-green);
-    transform: scale(1.15);
+    transform: scale(1.1);
+    font-weight: bolder;
     transition: all .2s ease;
 }
 
 button>span{
     color: var(--spotify-green);
     text-shadow: 0 0 3px var(--spotify-green);
+    font-weight: bold;
 }
 .center-area{
     position: fixed;
@@ -31,4 +34,12 @@ button>span{
     background: rgb(29,185,84);
 background: linear-gradient(124deg, rgba(29,185,84,0.8711134111847865) 0%, rgba(5,5,5,0.8823178929775035) 54%);
     box-shadow: 5px 5px 10px 3px #000000;
+}
+.center-area h1{
+    font-size: 50px;
+}
+.center-area p{
+    color: var(--grey-transparent);
+    font-size: 15px;
+    width: 80%;
 }

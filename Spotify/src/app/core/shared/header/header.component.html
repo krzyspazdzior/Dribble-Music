@@ -1,6 +1,6 @@
 <header>
-    <div class="img-box">
-            <img src="/logo_big_000.png" alt="logo">
+    <div class="img-box"[routerLink]="['/profile']" routerLinkActive="active">
+                <img src="/logo_big_000.png" alt="logo">
         </div>
         <div class="v-line-box">
             <div class="vertical-line"></div>
@@ -13,7 +13,7 @@
         </ul>
     </nav>
     <section>
-        <button id="login">Log In</button>
-        <button id="signup">Sign Up</button>
+            <a routerLink="/login" routerLinkActive="active" id="login">Log In</a>
+            <a routerLink="/login" routerLinkActive="active" id="signup">Sign Up</a>
     </section>
 </header>

@@ -56,23 +56,25 @@ section{
     justify-content: center;
     align-items: center;
 }
-section>button{
+section>a{
     width: 95px;
+    height: 40px;
     border: none;
     background-color: #050505;
     border-radius: 8px;
     font-size: 15px;
-    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
 }
 
-section>button:hover{
+section>a:hover{
     text-shadow: 0 0 20px #fff;
+    transform: scale(1.08);
+    transition: all 0.15s ease;
 }
 #signup{
     background: rgb(34,187,212);
 background: var(--logo-gradient);
-}
-section>button:hover{
-    transform: scale(1.05);
-    transition: all 0.2s ease;
 }

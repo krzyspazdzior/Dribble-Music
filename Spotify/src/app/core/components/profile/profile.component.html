@@ -10,7 +10,10 @@
             </div>
             <div class="profile-data">
                 <div class="name-type-area">
-                    <p>{{ userProfile.display_name }} <span> {{ userProfile.product }}</span></p>
+                    <p id="display-name">
+                        {{ userProfile.display_name }}
+                    </p>    
+                    <span>{{ userProfile.product }}</span>
                 </div>
                 <div class="followers-link-area">
                     <p>{{ userProfile.followers.total }} Followers ⋅<a id="edit"> Edit profile</a></p>

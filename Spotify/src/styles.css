@@ -8,6 +8,7 @@
     --logo-purple: rgba(87,48,129,1);
     --logo-gradient: linear-gradient(124deg, rgba(34,187,212,1) 0%, rgba(66,104,162,1) 49%, rgba(87,48,129,1) 93%);
     --spotify-green: #1DB954;
+    --grey-transparent: #ffffff76;
 }
 *{
     font-family: 'DM Sans', serif;
