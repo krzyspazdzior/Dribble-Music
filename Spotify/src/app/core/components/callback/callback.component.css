@@ -1,0 +1,20 @@
+
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+main div{
+    color: var(--font-white);
+    z-index: 1000;
+}
+h2 {
+    color: white;
+    text-align: center;
+  }
+  
+  p {
+    color: white;
+    text-align: center;
+    font-size: 20px;
+  }
