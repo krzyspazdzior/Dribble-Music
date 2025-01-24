@@ -76,7 +76,8 @@ export class AuthService {
     .post<any>(this._authUrl, body, {headers}).pipe(
       map(resp => {
         if(resp && resp.access_token){
-          this.saveToken(resp.access_token);
+          this.saveToken(resp.access_token, resp.expires_in);
+          this.saveRefreshToken(resp.refresh_token);
           return resp;
         }else{
             throw new Error('Blad: Nie otrzymano tokenu dostepu');
@@ -91,13 +92,54 @@ export class AuthService {
       })
     );
   }
-  saveToken(token: string): void{
+  saveToken(token: string, exipresIn: number): void{
+    const expiryTime = Date.now() + exipresIn * 1000;
     localStorage.setItem('access_token', token);
+    localStorage.setItem('access_token_expiry', expiryTime.toString())
   }
   saveRefreshToken(token: string){
     localStorage.setItem('refresh_token', token)
   }
+  isAccessTokenExpired(): boolean {
+    const expiryTime = localStorage.getItem('access_token_expiry');
+    return expiryTime ? Date.now() > parseInt(expiryTime) : true;
+  }
   removeToken(): void{
     localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+  }
+
+
+  
+  refreshAccessToken(): Observable<Token>{
+    const refreshToken = localStorage.getItem('refresh_token')
+    if (!refreshToken){
+      throw new Error('no refresh token available');
+    }
+
+    const body = new HttpParams()
+      .set('grant_type', 'refresh_token')
+      .set('refresh_token', refreshToken)
+      .set('client_id', this._clientId)
+      .set('client_secret', this._clientSecret)
+
+      const headers = new HttpHeaders()
+        .set('Content-Type', 'application/x-www-form-urlencoded')
+
+      return this._http
+        .post<any>(this._authUrl, body, { headers }).pipe(
+          map((resp) =>{
+            if (resp && resp.access_token) {
+              this.saveToken(resp.access_token, resp.expires_in)
+              return resp;
+            } else{
+              throw new Error('Error: no access token recieved during refresh');
+            }
+          }),
+          catchError((error) => {
+            console.error('Error refreshing access token', error);
+            throw error;
+          })
+        )
   }
 }

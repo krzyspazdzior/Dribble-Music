@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { HeaderComponent } from '../../shared/header/header.component';
 
@@ -9,10 +9,29 @@ import { HeaderComponent } from '../../shared/header/header.component';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
   constructor(private _authService: AuthService){};
+
+  ngOnInit(): void {
+    this.checkAndRefreshToken();
+  }
 
   authorize(){
     this._authService.redirectToSpotify();
+  }
+  checkAndRefreshToken(): void{
+    if (this._authService.isAccessTokenExpired()){
+      console.log('Access token exipred. Refreshing...');
+      this._authService.refreshAccessToken().subscribe(
+        (response) => {
+          console.log('access token refreshed: ', response);
+        },
+        (error) => {
+          console.log('error refreshing access token: ', error);
+        }
+      )
+    } else {
+      console.log('Access token is still valid.');
+    }
   }
 }
