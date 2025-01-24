@@ -12,8 +12,13 @@
             <li><a routerLink="" routerLinkActive="active">About</a></li>
         </ul>
     </nav>
+    <section *ngIf="_profileService.isLoggedIn; else notLoggedIn">
+        zalogowany!
+</section>
+<ng-template #notLoggedIn>
     <section>
-            <a routerLink="/login" routerLinkActive="active" id="login">Log In</a>
-            <a routerLink="/login" routerLinkActive="active" id="signup">Sign Up</a>
+    <a routerLink="/login" routerLinkActive="active" id="login">Log In</a>
+    <a routerLink="/login" routerLinkActive="active" id="signup">Sign Up</a>
     </section>
+</ng-template>
 </header>

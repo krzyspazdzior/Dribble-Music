@@ -13,7 +13,14 @@
                     <p id="display-name">
                         {{ userProfile.display_name }}
                     </p>    
-                    <span>{{ userProfile.product }}</span>
+                    <span *ngIf="userProfile?.product === 'premium'; else normalProduct" class="premium">
+                        {{ userProfile.product }}
+                      </span>
+                      <ng-template #normalProduct>
+                        <span class="normal">
+                          {{ userProfile.product || 'Unknown' }}
+                        </span>
+                      </ng-template>
                 </div>
                 <div class="followers-link-area">
                     <p>{{ userProfile.followers.total }} Followers ⋅<a id="edit"> Edit profile</a></p>

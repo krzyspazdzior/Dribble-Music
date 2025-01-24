@@ -6,12 +6,17 @@ import { Profile } from '../models/profile.model';
 @Injectable({
   providedIn: 'root'
 })
-export class ProfileService {
-  private apiUrl = 'https://api.spotify.com/v1/me'; 
-
+export class ProfileService {  
+  
+  private _apiUrl = 'https://api.spotify.com/v1/me'; 
+  
+  
   constructor(private http: HttpClient) {}
-
-
+  
+  
+  get isLoggedIn(): boolean {
+    return !!localStorage.getItem('access_token');
+  }
 
   getUserProfile(): Observable<Profile> {
     const accessToken = localStorage.getItem('access_token');
@@ -20,6 +25,8 @@ export class ProfileService {
     }
 
     const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`);
-    return this.http.get<Profile>(this.apiUrl, { headers });  
+    return this.http.get<Profile>(this._apiUrl, { headers }); 
+    
   }
+  
 }
