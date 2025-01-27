@@ -1,0 +1,36 @@
+main{
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height:fit-content !important;
+    position: relative !important;
+    margin-top: 0px !important;
+}
+
+.gradient-container {
+    position: relative;
+    display: inline-block;
+  }
+
+    
+    img {
+        position: sticky;
+        top: 50%;
+        display: block;
+        height: 500px;
+        animation:fade-in linear;
+        animation-timeline: view();
+        animation-range: 0px 50vh;
+        filter: drop-shadow(0px 0px 20px var(--logo-dark-blue));
+
+    }
+    
+  @keyframes fade-in {
+        from{
+            scale: .6; 
+            opacity: 0;
+        }
+         to {scale: 1; opacity: 1;}
+  }

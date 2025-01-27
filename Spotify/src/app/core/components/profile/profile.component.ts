@@ -16,7 +16,7 @@ export class ProfileComponent implements OnInit {
   userProfile: Profile | null = null;
   errorMessage: string = '';
 
-  constructor(private profileService: ProfileService) {}
+  constructor(public profileService: ProfileService) {}
 
   ngOnInit(): void {
     const token = localStorage.getItem('spotify_token');

@@ -12,9 +12,25 @@
             <li><a routerLink="" routerLinkActive="active">About</a></li>
         </ul>
     </nav>
-    <section *ngIf="_profileService.isLoggedIn; else notLoggedIn">
-        zalogowany!
-</section>
+    <div id='loggedIn' *ngIf="profileService.isLoggedIn; else notLoggedIn">
+        <div *ngIf="profilePicture" (click)="toggleMenuDisplay()" [ngClass]="{'active-menu': isShowMenu}">
+            <img [src]="profilePicture.url" alt="profile picture" [width]="profilePicture.width" [height]="profilePicture.height" />
+            <i class="bi bi-caret-down-fill"></i>
+            <div class="drop-menu" [hidden]="!isShowMenu">
+                <section>
+                    <p id="username">{{ userProfile?.display_name }}</p>
+                    <p id="email">{{ userProfile?.email }}</p>
+                </section>
+                <ul>
+                    <a routerLink="/profile" routerLinkActive="active">Profile</a>
+                    <a>Your Charts</a>
+                    <a href="">About</a>
+                    <a (click)="profileService.logout()">Log out</a>
+                    <a id="version">Version:<p>1.011.299</p></a>
+                </ul>
+            </div>
+        </div>
+    </div>
 <ng-template #notLoggedIn>
     <section>
     <a routerLink="/login" routerLinkActive="active" id="login">Log In</a>

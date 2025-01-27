@@ -1,9 +1,11 @@
 <app-header></app-header>
 <main>
     <div class="background-image"></div>
-    <div *ngIf="countdown >= 0">
-        <h2>{{ successMessage }}</h2>
-        <p>{{ redirectMessage }} <strong>{{ countdown }}</strong>...</p>
-      </div>
+    <section>
+      <div *ngIf="countdown >= 0">
+          <h2>{{ successMessage }}</h2>
+          <p>{{ redirectMessage }} <strong>{{ countdown }}</strong>...</p>
+        </div>
+    </section>
 
 </main>
