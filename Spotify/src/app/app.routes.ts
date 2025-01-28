@@ -6,10 +6,10 @@ import { HomeComponent } from './core/components/home/home.component';
 
 
 export const routes: Routes = [
-    { path: '', redirectTo: '/login', pathMatch: 'full' },
+    { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: '', component: LoginComponent},
+    {path: 'home', component: HomeComponent},
     { path: 'profile', component: ProfileComponent},
     { path: 'callback', component: CallbackComponent },
-    { path: 'login', component: LoginComponent},
-    {path: 'home', component: HomeComponent}
+    { path: 'login', component: LoginComponent}
 ];

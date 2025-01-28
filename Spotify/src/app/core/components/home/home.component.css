@@ -19,7 +19,6 @@ section{
     display: block;
     width: 185px;
     height: 185px;
-    filter: drop-shadow(0px 0px 20px var(--logo-dark-blue));
  }
 .centered-area .login{
     background: rgb(34,187,212);
@@ -44,8 +43,8 @@ section{
 }
 .gradient{
     position: absolute;
-    box-shadow: 0 0 1000px 100px var(--logo-dark-blue);
     z-index: 100;
+    box-shadow: 0 0 1000px 100px var(--logo-dark-blue);
 }
 #gradient-1{
     top: 100%;
@@ -59,6 +58,7 @@ section{
 #gradient-3{
     top: 50%;
     left: 100%;
+
 }
 .centered-area .button{
     width: 115px !important;
@@ -146,14 +146,29 @@ h1 span{
     width: 100%;
 
 }
-.spotify-area i{
+.spotify-area #spotify{
     font-size: 200px;
     color: var(--spotify-green);
     filter: drop-shadow(0 0 7px var(--spotify-green));
 
 }
+.spotify-area #plug{
+    font-size: 50px;
+    color: var(--grey-transparent);
+    transform: rotate(90deg);
+}
+
 .spotify-area img{
     height: 225px;
     width: 225px;
     filter: drop-shadow(0 0 10px var(--logo-dark-blue));
+}
+.s-third:hover #plug{
+    color: #fff;
+    filter: drop-shadow(0 0 10px #fff);
+    transition: all 3.2s ease;
+}
+.s-main:hover .centered-area>img{
+    filter: drop-shadow(0px 0px 10px var(--logo-dark-blue));
+    transition: all 1s ease-in-out;
 }
