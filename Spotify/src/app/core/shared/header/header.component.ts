@@ -21,6 +21,10 @@ export class HeaderComponent implements OnInit{
   
 
     ngOnInit(): void {
+      this.displayUserData();
+    }
+    
+    displayUserData():void {
       const token = localStorage.getItem('spotify_token');
     
       if (!token && localStorage.getItem('access_token') == null) {
@@ -33,7 +37,6 @@ export class HeaderComponent implements OnInit{
           console.error('Error fetching user data:', error);
           this.errorMessage = 'An error occurred while fetching user data.';
     
-          // Return a default value to avoid breaking the app
           return of(null);
         })
       ).subscribe((profileData: Profile | null) => {
@@ -56,7 +59,9 @@ export class HeaderComponent implements OnInit{
         }
       });
     }
-    
+
+
+
     toggleMenuDisplay(): void{
       const arrow = document.querySelector('header #loggedIn>div i') as HTMLElement;
       this.isShowMenu = !this.isShowMenu;
