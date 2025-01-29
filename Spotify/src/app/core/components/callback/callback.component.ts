@@ -5,11 +5,11 @@ import { Token } from '../../models/token.model';
 import { of } from 'rxjs';
 import { catchError } from 'rxjs';
 import { HeaderComponent } from '../../shared/header/header.component';
-
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-callback',
   standalone: true,
-  imports: [HeaderComponent],
+  imports: [HeaderComponent, CommonModule],
   templateUrl: './callback.component.html',
   styleUrl: './callback.component.css'
 })
@@ -19,12 +19,19 @@ export class CallbackComponent implements OnInit{
 
   code: string = '';
   accessToken: string | null = null;
+
+
+  countdown: number = 5;
+  successMessage: string = "You have successfully logged in!";
+  redirectMessage: string = "You will be redirected to your profile in: ";
   
   constructor(
     private _route: ActivatedRoute, private _authService: AuthService, private _router: Router) {}
     
     ngOnInit(): void {
       this.callbackRefresh();
+      this.startCountdown();
+      
     }
 
     callbackRefresh(): void{
@@ -63,5 +70,19 @@ export class CallbackComponent implements OnInit{
         }
       });
     }
-    
+    private startCountdown(): void {
+      console.log("Countdown Started")
+      const interval = setInterval(() => {
+        console.log(`Countdown: ${this.countdown}`);
+        if (this.countdown > 0) {
+          this.countdown--;
+        } else {
+          clearInterval(interval);
+          this._router.navigateByUrl('/profile')
+        }
+      }, 1000);
+    }
+  
 }
+    
+

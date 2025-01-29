@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map, catchError } from 'rxjs';
+import { map, catchError, throwError } from 'rxjs';
 import { Token } from '../models/token.model';
+import { ProfileService } from './profile.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class AuthService {
   private _redirectUri: string = 'http://localhost:4200/callback'
   private _profileUrl: string = 'https://api.spotify.com/v1/me';
 
-  constructor(private _http: HttpClient) {}
+  constructor(private _http: HttpClient, private _profileService: ProfileService) {}
 
 
   private generateVerifier(length: number){
@@ -76,7 +77,8 @@ export class AuthService {
     .post<any>(this._authUrl, body, {headers}).pipe(
       map(resp => {
         if(resp && resp.access_token){
-          this.saveToken(resp.access_token);
+          this.saveToken(resp.access_token, resp.expires_in);
+          this.saveRefreshToken(resp.refresh_token);
           return resp;
         }else{
             throw new Error('Blad: Nie otrzymano tokenu dostepu');
@@ -91,13 +93,82 @@ export class AuthService {
       })
     );
   }
-  saveToken(token: string): void{
-    localStorage.setItem('access_token', token);
+  saveToken(accessToken: string, expiresIn: number, refreshToken?: string) {
+    localStorage.setItem('access_token', accessToken);
+    localStorage.setItem('access_token_expiry', (Date.now() + expiresIn * 1000).toString());
+    
+    if (refreshToken) {
+      localStorage.setItem('refresh_token', refreshToken);
+    }
   }
   saveRefreshToken(token: string){
     localStorage.setItem('refresh_token', token)
   }
+  isAccessTokenExpired(): boolean {
+    const expiryTime = localStorage.getItem('access_token_expiry');
+    return expiryTime ? Date.now() > parseInt(expiryTime) : true;
+  }
   removeToken(): void{
     localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+  }
+
+
+  
+  refreshAccessToken(): Observable<Token> {
+    const refreshToken = localStorage.getItem('refresh_token');
+    if (!refreshToken) {
+      console.error('No refresh token available. Redirecting to login.');
+      this._profileService.logout();
+      return throwError(() => new Error('No refresh token available'));
+    }
+  
+    const body = new HttpParams()
+      .set('grant_type', 'refresh_token')
+      .set('refresh_token', refreshToken)
+      .set('client_id', this._clientId)
+      .set('client_secret', this._clientSecret);
+  
+    const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+  
+    return this._http.post<any>(this._authUrl, body, { headers }).pipe(
+      map((resp) => {
+        if (resp && resp.access_token) {
+          this.saveToken(resp.access_token, resp.expires_in);
+          return resp;
+        } else {
+          throw new Error('Error: No access token received during refresh');
+        }
+      }),
+      catchError((error) => {
+        console.error('Error refreshing access token:', error);
+  
+        if (error.error && error.error.error === 'invalid_grant') {
+          console.log('Refresh token revoked. Redirecting to login...');
+          this._profileService.logout();
+        }
+  
+        return throwError(() => error);
+      })
+    );
+  }
+  checkAndRefreshToken(): void{
+    const accessToken = localStorage.getItem('access_token');
+    
+    if(!accessToken){
+      console.log('uzytkownik nie jest zalogowany')
+    }else if (this.isAccessTokenExpired()){
+      console.log('Access token exipred. Refreshing...');
+      this.refreshAccessToken().subscribe(
+        (response) => {
+          console.log('access token refreshed: ', response);
+        },
+        (error) => {
+          console.log('error refreshing access token: ', error);
+        }
+      )
+    } else {
+      return
+    }
   }
 }

@@ -1,2 +1,11 @@
 <app-header></app-header>
-<p>Welcome, your profile has been loaded!</p>
+<main>
+    <div class="background-image"></div>
+    <section>
+      <div *ngIf="countdown >= 0">
+          <h2>{{ successMessage }}</h2>
+          <p>{{ redirectMessage }} <strong>{{ countdown }}</strong>...</p>
+        </div>
+    </section>
+
+</main>

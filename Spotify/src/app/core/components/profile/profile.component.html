@@ -1,0 +1,46 @@
+<app-header></app-header>
+<main>
+    <div class="background-image"></div>
+    <div *ngIf="userProfile">
+        <div class="profile-container">
+            <div class="img-area">
+                <div *ngIf="userProfile?.images && userProfile.images.length > 0">
+                    <img [src]="userProfile.images[0].url" [alt]="userProfile.display_name" [width]="userProfile.images[0].width" [height]="userProfile.images[0].height" />
+                </div>
+            </div>
+            <div class="profile-data">
+                <div class="name-type-area">
+                    <p id="display-name">
+                        {{ userProfile.display_name }}
+                    </p>    
+                    <span *ngIf="userProfile?.product === 'premium'; else normalProduct" class="premium">
+                        {{ userProfile.product }}
+                      </span>
+                      <ng-template #normalProduct>
+                        <span class="normal">
+                          {{ userProfile.product || 'Unknown' }}
+                        </span>
+                      </ng-template>
+                </div>
+                <div class="followers-link-area">
+                    <p>{{ userProfile.followers.total }} Followers ⋅<a id="edit"> Edit profile</a></p>
+                    <p><a [href]="userProfile.external_urls.spotify" target="_blank"><i class="bi bi-spotify"></i></a></p>
+                </div>
+            </div>
+        </div>
+  </div>
+  <div *ngIf="!userProfile">
+        <div class="profile-container">
+            <div class="img-area empty-area">
+                <div class="empty-img">no data</div>
+            </div>
+            <div class="profile-data">
+                <div class="name-type-area">
+                    <p class="empty-message">You are not logged in
+                        <a routerLink="/login" routerLinkActive="active">Log In</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
