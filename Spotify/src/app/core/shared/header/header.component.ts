@@ -3,6 +3,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ProfileService } from '../../services/profile.service';
 import { Image, Profile } from '../../models/profile.model';
 import { NgIf, NgClass } from '@angular/common';
+import { catchError, of } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -18,35 +19,44 @@ export class HeaderComponent implements OnInit{
 
     constructor(public profileService: ProfileService) {}
   
+
     ngOnInit(): void {
       const token = localStorage.getItem('spotify_token');
-      
+    
       if (!token && localStorage.getItem('access_token') == null) {
         this.userProfile = null;
         return;
       }
-      this.profileService.getUserProfile().subscribe({
-        next: (profileData: Profile) => {
-          this.userProfile = profileData;
-
-          if (this.userProfile?.images && this.userProfile.images.length > 0) {
-            this.profilePicture = this.userProfile.images[0];
-            this.profilePicture.height = 50;
-            this.profilePicture.width = 50;
-          } else {
-            this.profilePicture = {
-              url: '/blank_profile.png',
-              height: 50,
-              width: 50
-            };
-          }
-        },
-        error: (error) => {
-          this.errorMessage = 'An error occurred while fetching user data.';
+    
+      this.profileService.getUserProfile().pipe(
+        catchError((error) => {
           console.error('Error fetching user data:', error);
+          this.errorMessage = 'An error occurred while fetching user data.';
+    
+          // Return a default value to avoid breaking the app
+          return of(null);
+        })
+      ).subscribe((profileData: Profile | null) => {
+        if (!profileData) {
+          return;
+        }
+    
+        this.userProfile = profileData;
+    
+        if (this.userProfile?.images && this.userProfile.images.length > 0) {
+          this.profilePicture = this.userProfile.images[0];
+          this.profilePicture.height = 50;
+          this.profilePicture.width = 50;
+        } else {
+          this.profilePicture = {
+            url: '/blank_profile.png',
+            height: 50,
+            width: 50
+          };
         }
       });
     }
+    
     toggleMenuDisplay(): void{
       const arrow = document.querySelector('header #loggedIn>div i') as HTMLElement;
       this.isShowMenu = !this.isShowMenu;

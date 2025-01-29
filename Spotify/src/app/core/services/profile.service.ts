@@ -11,7 +11,7 @@ export class ProfileService {
   private _apiUrl = 'https://api.spotify.com/v1/me'; 
   
   
-  constructor(private http: HttpClient, private _router: Router) {}
+  constructor(private _http: HttpClient, private _router: Router) {}
   
   
   get isLoggedIn(): boolean {
@@ -28,7 +28,7 @@ export class ProfileService {
     }
 
     const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`);
-    return this.http.get<Profile>(this._apiUrl, { headers }); 
+    return this._http.get<Profile>(this._apiUrl, { headers }); 
     
   }
   

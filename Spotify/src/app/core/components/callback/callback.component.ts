@@ -70,7 +70,7 @@ export class CallbackComponent implements OnInit{
         }
       });
     }
-    startCountdown() {
+    private startCountdown(): void {
       console.log("Countdown Started")
       const interval = setInterval(() => {
         console.log(`Countdown: ${this.countdown}`);
