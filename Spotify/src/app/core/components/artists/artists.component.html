@@ -1,0 +1,20 @@
+<app-header></app-header>
+<main>
+  <div *ngIf="topArtists.length > 0; else errorTemplate">
+    <nav>
+      <ul>
+        
+      </ul>
+    </nav>
+    <ul>
+      <li *ngFor="let artist of topArtists">
+        <img [src]="artist.images[0].url" alt="{{ artist.name }}" width="50">
+        {{ artist.name }}
+      </li>
+    </ul>
+  </div>
+  
+  <ng-template #errorTemplate>
+    <p>{{ errorMessage }}</p>
+  </ng-template>
+</main>

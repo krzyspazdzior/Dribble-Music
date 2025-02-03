@@ -3,6 +3,7 @@ import { CallbackComponent } from './core/components/callback/callback.component
 import { LoginComponent } from './core/components/login/login.component';
 import { ProfileComponent } from './core/components/profile/profile.component';
 import { HomeComponent } from './core/components/home/home.component';
+import { ArtistsComponent } from './core/components/artists/artists.component';
 
 
 export const routes: Routes = [
@@ -11,5 +12,6 @@ export const routes: Routes = [
     {path: 'home', component: HomeComponent},
     { path: 'profile', component: ProfileComponent},
     { path: 'callback', component: CallbackComponent },
-    { path: 'login', component: LoginComponent}
+    { path: 'login', component: LoginComponent},
+    { path: 'charts', component:ArtistsComponent}
 ];
