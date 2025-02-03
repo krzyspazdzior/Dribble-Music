@@ -163,12 +163,3 @@ h1 span{
     width: 225px;
     filter: drop-shadow(0 0 10px var(--logo-dark-blue));
 }
-.s-third:hover #plug{
-    color: #fff;
-    filter: drop-shadow(0 0 10px #fff);
-    transition: all 3.2s ease;
-}
-.s-main:hover .centered-area>img{
-    filter: drop-shadow(0px 0px 10px var(--logo-dark-blue));
-    transition: all 1s ease-in-out;
-}

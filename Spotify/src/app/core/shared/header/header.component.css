@@ -38,10 +38,10 @@ nav ul{
     height: 100%;
     
 }
-nav li{
+nav a{
     filter: opacity(0.8);
 }
-nav li:hover{
+nav a:hover{
     filter: opacity(0.95);
 }
 a{
@@ -179,4 +179,8 @@ background: var(--logo-gradient);
 #version:hover{
     background-color: inherit !important;
     cursor: default !important;
+}
+nav>ul>li>a.active{
+    color: var(--logo-dark-blue) !important;
+    filter: opacity(1) !important;
 }

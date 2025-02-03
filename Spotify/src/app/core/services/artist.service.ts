@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError, map } from 'rxjs';
-import { Artist } from '../models/artists';
+import { Artist } from '../models/artist.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,9 +19,11 @@ export class ArtistsService {
     }
 
     const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`);
-
     return this._http.get<{ items: Artist[] }>(this._apiUrl, { headers }).pipe(
-      map(response => response.items),
+      map(response => {
+        console.log('API Response:', response);
+        return response.items;
+      }),
       catchError(error => {
         console.error('Error fetching artists:', error);
         throw error;

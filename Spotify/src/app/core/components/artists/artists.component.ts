@@ -1,22 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { ArtistsService } from '../../services/artist.service';
-import { HeaderComponent } from '../../shared/header/header.component';
-import { Artist } from '../../models/artists';
+import { Artist } from '../../models/artist.model';
 import { NgIf, NgFor } from '@angular/common';
+import { Input } from '@angular/core';
 @Component({
   selector: 'app-artists',
-  imports: [NgIf, NgFor, HeaderComponent],
+  imports: [NgIf, NgFor],
   templateUrl: './artists.component.html',
-  styleUrl: './artists.component.css'
+  styleUrl: '../charts/charts.component.css'
 })
 export class ArtistsComponent implements OnInit {
   topArtists: Artist[] = [];
   errorMessage: string = '';
 
-  constructor(private artistService: ArtistsService) {}
 
+  
+  constructor(private _artistService: ArtistsService) {}
+  
   ngOnInit(): void {
-    this.artistService.getTopArtists().subscribe({
+    this.fetchTopArtists();
+  }
+  
+  fetchTopArtists(){
+    this._artistService.getTopArtists().subscribe({
       next: (artists) => this.topArtists = artists,
       error: (err) => {
         console.error('Error fetching top artists:', err);

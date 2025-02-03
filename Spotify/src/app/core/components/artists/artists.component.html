@@ -1,15 +1,18 @@
-<app-header></app-header>
-<main>
-  <div *ngIf="topArtists.length > 0; else errorTemplate">
-    <nav>
-      <ul>
-        
-      </ul>
-    </nav>
+
+  <div *ngIf="topArtists.length > 0; else errorTemplate" class="itemList">
     <ul>
+      <div class="legend">
+        <span></span> - Popularity based on recent activity, play count and global popularity
+      </div>
       <li *ngFor="let artist of topArtists">
-        <img [src]="artist.images[0].url" alt="{{ artist.name }}" width="50">
-        {{ artist.name }}
+        <div class="info">
+          <img [src]="artist.images[0].url" alt="{{ artist.name }}" width="75">
+          {{ artist.name }}
+        </div>
+        <div class="popularity-bar">
+          <div 
+          class="popularity-fill" [style.width]="artist.popularity + '%'"></div>
+        </div>
       </li>
     </ul>
   </div>
@@ -17,4 +20,3 @@
   <ng-template #errorTemplate>
     <p>{{ errorMessage }}</p>
   </ng-template>
-</main>

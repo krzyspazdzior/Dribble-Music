@@ -83,3 +83,7 @@ main{
     transform: scale(1.05);
     transition: all 0.2s ease;
 }
+.header-block{
+    width: 100vw;
+    height: 80px;
+}

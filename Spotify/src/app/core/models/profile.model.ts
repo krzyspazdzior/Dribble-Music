@@ -1,8 +1,5 @@
-export interface Image {
-    url: string,
-    height: number,
-    width: number;
-}
+import { Image } from "./image.model";
+
 export interface Profile {
     country: string;
     display_name: string;
