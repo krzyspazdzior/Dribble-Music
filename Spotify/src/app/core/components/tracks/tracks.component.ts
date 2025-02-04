@@ -20,7 +20,7 @@ export class TracksComponent implements OnInit {
     this.fetchTopTracks()
   }
 
-  fetchTopTracks(){
+  private fetchTopTracks(): void{
     this._trackService.getTopTracks().subscribe({
       next: (tracks) => this.topTracks = tracks,
       error: (err) => {

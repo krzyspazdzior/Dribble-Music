@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ArtistsService } from '../../services/artist.service';
 import { Artist } from '../../models/artist.model';
 import { NgIf, NgFor } from '@angular/common';
-import { Input } from '@angular/core';
 @Component({
   selector: 'app-artists',
   imports: [NgIf, NgFor],
@@ -21,7 +20,7 @@ export class ArtistsComponent implements OnInit {
     this.fetchTopArtists();
   }
   
-  fetchTopArtists(){
+  private fetchTopArtists(): void{
     this._artistService.getTopArtists().subscribe({
       next: (artists) => this.topArtists = artists,
       error: (err) => {

@@ -16,7 +16,4 @@ export class ChartsComponent implements OnInit{
   ngOnInit(): void {
     this._authService.checkAndRefreshToken();
   }
-  isActive(route: string): boolean {
-    return this.router.url.includes(route);
-  }
 }
