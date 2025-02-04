@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ProfileService } from '../../services/profile.service';
-import { Image, Profile } from '../../models/profile.model';
+import { Profile } from '../../models/profile.model';
+import { Image } from '../../models/image.model';
 import { NgIf, NgClass } from '@angular/common';
 import { catchError, of } from 'rxjs';
 

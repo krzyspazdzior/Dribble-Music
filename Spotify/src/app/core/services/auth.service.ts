@@ -38,7 +38,7 @@ export class AuthService {
     .append('client_id', this._clientId)
     .append('response_type', 'code')
     .append('redirect_uri', this._redirectUri)
-    .append('scope', 'user-read-private user-read-email')
+    .append('scope', 'user-read-private user-read-email user-top-read')
     .append('code_challenge_method', 'S256')
     .append('code_challenge', challenge)
 
