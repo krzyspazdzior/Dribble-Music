@@ -163,3 +163,19 @@ h1 span{
     width: 225px;
     filter: drop-shadow(0 0 10px var(--logo-dark-blue));
 }
+@media (max-width: 900px){
+    .centered-area{
+        text-align: center;
+    }
+    .s-second{
+        text-align: center;
+    }
+    .s-third img, .s-third i{
+        transform: scale(0.7);
+    }
+    .s-third h1{
+        width: 100vw;
+        font-size: 1.30em;
+        text-align: center;
+    }
+}
