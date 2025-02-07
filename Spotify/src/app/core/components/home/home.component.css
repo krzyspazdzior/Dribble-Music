@@ -179,3 +179,16 @@ h1 span{
         text-align: center;
     }
 }
+
+@media (min-width: 1600px){
+    .centered-area h1{
+        font-size: 60px;
+    }
+    .centered-area p{
+        font-size: 23px;
+    }
+    .centered-area img{
+        height: 250px;
+        width: 250px;
+    }
+}

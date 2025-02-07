@@ -142,3 +142,12 @@
         align-items: center;
     }
   }
+  @media (min-width: 1600px){
+    .profile-container img{
+        height: 300px;
+        width: 300px;
+    }
+    .profile-container #display-name{
+        font-size: 65px;
+    }
+  }
