@@ -5,6 +5,7 @@ header{
     display: flex;
     background-color: #000;
     padding: 10px 10px;
+    height: 80px;
 }
 .v-line-box{
     display: flex;
@@ -183,4 +184,22 @@ background: var(--logo-gradient);
 nav>ul>li>a.active{
     color: var(--logo-dark-blue) !important;
     filter: opacity(1) !important;
+}
+
+@media (max-width: 900px) {
+    #login{
+        display: none;
+    }
+    ul>li{
+        display: none;
+    }
+    .v-line-box{
+        display: none;
+    }
+    .img-box img{
+        height: 35px;
+    }
+    header{
+        padding: 0 5px;
+    }
 }

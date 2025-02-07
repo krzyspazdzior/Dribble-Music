@@ -84,3 +84,9 @@ ul{
     background: var(--logo-gradient);
     margin: 7px 0;
   }
+
+  @media (max-width: 900px){
+    .legend{
+        font-size: 10px;
+    }
+  }

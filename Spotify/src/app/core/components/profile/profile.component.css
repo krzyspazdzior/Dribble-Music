@@ -125,3 +125,29 @@
   .normal {
     color: rgba(255, 255, 255, 0.59);
   }
+
+  @media (max-width: 900px){
+    .profile-container{
+        padding: 30px 0;
+        width: 100vw;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .profile-data{
+        text-align: center;
+    }
+    .followers-link-area p{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+  }
+  @media (min-width: 1600px){
+    .profile-container img{
+        height: 300px;
+        width: 300px;
+    }
+    .profile-container #display-name{
+        font-size: 65px;
+    }
+  }
