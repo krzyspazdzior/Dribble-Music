@@ -21,6 +21,7 @@
     padding: 0;
 }
 body, html{
+    background-color: #000000;
     color: #101010;
     margin: 0;
     padding: 0;
@@ -39,6 +40,8 @@ button:hover{
     width: 100vw;
     background-color: #cccccc;
     filter: brightness(0.5);
+    filter: grayscale(1) sepia(1) hue-rotate(190deg) saturate(600%) brightness(0.5);
+
 }
 main{
     position: fixed;

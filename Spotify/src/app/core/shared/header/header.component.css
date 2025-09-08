@@ -184,6 +184,10 @@ background: var(--logo-gradient);
 nav>ul>li>a.active{
     color: var(--logo-dark-blue) !important;
     filter: opacity(1) !important;
+    font-weight: 900;
+}
+header>.img-box>img:hover{
+    cursor: pointer;
 }
 
 @media (max-width: 900px) {
