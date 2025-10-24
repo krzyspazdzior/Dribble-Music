@@ -5,7 +5,7 @@ section{
     width: 100%;
     max-width: 100%;
     height: 100vh;
-    background-color: #000;
+    background-color: #010010;
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -15,6 +15,7 @@ section{
     align-items: center;
 } 
 .centered-area img {
+    filter: drop-shadow(2px 2px 2px #000);
     display: block;
     width: 185px;
     height: 185px;
@@ -33,6 +34,7 @@ section{
     justify-content: center;
     align-items: center;
     gap: 25px;
+    z-index: 10;
 }
 .centered-links{
     display: flex;
@@ -40,11 +42,7 @@ section{
     align-items: center;
     gap: 15px;
 }
-.gradient{
-    position: absolute;
-    z-index: 100;
-    box-shadow: 0 0 1000px 100px var(--logo-dark-blue);
-}
+
 #gradient-1{
     top: 100%;
     left: 50%;
@@ -88,17 +86,78 @@ section{
     height: calc(100vh - 80px);
 }
 article{
+    z-index: 10;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     gap: 20px;
 }
+.s-third article,
+.fav-artist {
+  padding: 50px;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+
+  /* półprzezroczysty, bąbelkowy gradient */
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.123) 0%,
+    rgba(255, 200, 255, 0.15) 25%,
+    rgba(150, 220, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.074) 100%
+  );
+
+  /* efekt szkła */
+  backdrop-filter: blur(20px) saturate(300%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+
+  /* ramka + cień */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* refleksy świetlne — dają efekt “bąbla mydlanego” */
+.s-third article::before,
+.fav-artist::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(255, 255, 255, 0.6) 0%,
+    rgba(255, 255, 255, 0.1) 60%,
+    transparent 100%
+  );
+  mix-blend-mode: overlay;
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.s-third article::after,
+.fav-artist::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at 70% 70%,
+    rgba(255, 200, 255, 0.209),
+    rgba(150, 201, 255, 0.188),
+    transparent 70%
+  );
+  mix-blend-mode: screen;
+  opacity: 0.2;
+  pointer-events: none;
+}
 article h1{
     font-weight: 1000;
     font-size: 33px;
 }
 table{
+    z-index: 10;
     max-width: 75%;
     border-radius: 10px;
     font-weight: bold;
@@ -148,7 +207,7 @@ h1 span{
 .spotify-area #spotify{
     font-size: 200px;
     color: var(--spotify-green);
-    filter: drop-shadow(0 0 7px var(--spotify-green));
+    /* filter: drop-shadow(0 0 7px var(--spotify-green)); */
 
 }
 .spotify-area #plug{
@@ -160,8 +219,19 @@ h1 span{
 .spotify-area img{
     height: 225px;
     width: 225px;
-    filter: drop-shadow(0 0 10px var(--logo-dark-blue));
+    /* filter: drop-shadow(0 0 10px var(--logo-dark-blue)); */
 }
+
+section img.background{
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 @media (max-width: 900px){
     .centered-area{
         text-align: center;
@@ -176,8 +246,11 @@ h1 span{
         width: 100vw;
         font-size: 1.30em;
         text-align: center;
+
     }
 }
+
+
 
 @media (min-width: 1600px){
     .centered-area h1{
