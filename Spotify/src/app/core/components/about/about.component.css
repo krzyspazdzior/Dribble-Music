@@ -1,0 +1,150 @@
+.about-section {
+    width: 100%;
+    height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #010010, #1a1a1a);
+  z-index: 1;
+}
+img.background{
+    z-index: -1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) sepia(1) hue-rotate(170deg) saturate(600%);
+}
+.about-container {
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.about-container h2 {
+    font-family: "DM Sans", serif;
+  font-size: 4rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  position: relative;
+  color: #fff;
+}
+
+
+.about-container p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  max-width: 800px;
+  text-align: center;
+  color: #ccc;
+}
+
+/* Karty liquid glass z highlightami */
+.about-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.card {
+  position: relative;
+  border-radius: 50px;
+  backdrop-filter: blur(30px) saturate(250%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  border: 2px solid rgba(255, 255, 255, 0.157);
+  padding: 35px;
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+   justify-content: space-between;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: visible;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at top left, rgba(255,255,255,0.18), rgba(255,255,255,0.05) 80%, transparent 100%);
+  pointer-events: none;
+  mix-blend-mode: soft-light;
+  opacity: 0.8;
+}
+
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+}
+
+.card i {
+  font-size: 3rem;
+  color: #1db954;
+}
+
+.card h3 {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  font-weight: 900;
+  color: #fff;
+}
+
+.card p {
+  font-size: 1rem;
+  text-align: center;
+  color: #ddd;
+  line-height: 1.4;
+}
+
+@keyframes highlightMove {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
+}
+
+/* Responsywność */
+@media (max-width: 900px){
+  .about-container h2{
+    font-size: 2.2rem;
+  }
+
+  .about-container p{
+    font-size: 1rem;
+  }
+
+  .about-cards{
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .card{
+    width: 90%;
+    padding: 25px 15px;
+  }
+
+  .card i{
+    font-size: 2.5rem;
+  }
+
+  .card h3{
+    font-size: 1.3rem;
+  }
+
+  .card p{
+    font-size: 0.95rem;
+  }
+}
+
+@media (width < 900){
+    section{
+        height: auto;
+    }
+}

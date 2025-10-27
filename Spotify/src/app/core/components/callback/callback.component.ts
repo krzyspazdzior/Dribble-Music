@@ -21,7 +21,7 @@ export class CallbackComponent implements OnInit{
   accessToken: string | null = null;
 
 
-  countdown: number = 5;
+  countdown: number = 3;
   successMessage: string = "You have successfully logged in!";
   redirectMessage: string = "You will be redirected to your profile in: ";
   

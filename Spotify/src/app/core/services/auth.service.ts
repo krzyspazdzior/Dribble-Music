@@ -171,4 +171,7 @@ export class AuthService {
       return
     }
   }
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('access_token');
+  }
 }

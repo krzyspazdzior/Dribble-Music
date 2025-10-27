@@ -6,12 +6,14 @@ import { HomeComponent } from './core/components/home/home.component';
 import { ArtistsComponent } from './core/components/artists/artists.component';
 import { ChartsComponent } from './core/components/charts/charts.component';
 import { TracksComponent } from './core/components/tracks/tracks.component';
+import { AboutComponent } from './core/components/about/about.component';
 
 
 export const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: '', component: LoginComponent},
     {path: 'home', component: HomeComponent},
+    {path: 'about', component: AboutComponent},
     { path: 'profile', component: ProfileComponent},
     { path: 'callback', component: CallbackComponent },
     { path: 'login', component: LoginComponent},

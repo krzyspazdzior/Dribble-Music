@@ -34,6 +34,7 @@ button>span{
     background: rgb(29,185,84);
 background: linear-gradient(124deg, rgba(29,185,84,0.8711134111847865) 0%, rgba(5,5,5,0.8823178929775035) 54%);
     box-shadow: 5px 5px 10px 3px #000000;
+    
 }
 .center-area h1{
     font-size: 50px;
