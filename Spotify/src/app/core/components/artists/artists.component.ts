@@ -22,7 +22,9 @@ export class ArtistsComponent implements OnInit {
   
   private fetchTopArtists(): void{
     this._artistService.getTopArtists().subscribe({
-      next: (artists) => this.topArtists = artists,
+      next: (artists) =>{
+        this.topArtists = artists;
+      },
       error: (err) => {
         console.error('Error fetching top artists:', err);
         this.errorMessage = 'Failed to load top artists';

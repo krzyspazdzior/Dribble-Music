@@ -7,6 +7,7 @@ import { ArtistsComponent } from './core/components/artists/artists.component';
 import { ChartsComponent } from './core/components/charts/charts.component';
 import { TracksComponent } from './core/components/tracks/tracks.component';
 import { AboutComponent } from './core/components/about/about.component';
+import { AuthGuard } from './core/services/guard.service';
 
 
 export const routes: Routes = [
@@ -18,7 +19,7 @@ export const routes: Routes = [
     { path: 'callback', component: CallbackComponent },
     { path: 'login', component: LoginComponent},
     {path: 'charts',
-    component: ChartsComponent,
+    component: ChartsComponent, canActivate: [AuthGuard],
     children: [
         { path: 'artists', component: ArtistsComponent },
         { path: 'tracks', component: TracksComponent },

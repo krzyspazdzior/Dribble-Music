@@ -1,18 +1,29 @@
   <div *ngIf="topTracks.length > 0; else errorTemplate" class="itemList">
       <ul>
-        <div class="legend">
-            <span></span> - Popularity based on recent activity, play count and global popularity
-          </div>
-      <li *ngFor="let track of topTracks">
-        <div class="info">
-          <img [src]="track.album.images[0].url" alt="{{ track.name }}" width="75">
-          {{ track.name }}
-        </div>
-        <div class="popularity-bar">
-          <div 
-          class="popularity-fill" [style.width]="track.popularity + '%'"></div>
-        </div>
-      </li>
+         <div class="legend">
+        <p>
+          <span></span> - Popularity based on recent activity, play count and global popularity
+        </p>
+        <h2>
+          Most listened tracks:
+        </h2>
+      </div>
+          @for(track of topTracks; track $index){
+            <li>
+
+              <p>{{$index+1}}.</p>
+              <div class="item">
+                <div class="info">
+                  <img [src]="track.album.images[0].url" alt="{{ track.name }}" width="75">
+                  {{ track.name }}
+                </div>
+                <div class="popularity-bar">
+                  <div 
+                  class="popularity-fill" [style.width]="track.popularity + '%'"></div>
+                </div>
+              </div>
+            </li>
+          }
     </ul>
   </div>
   

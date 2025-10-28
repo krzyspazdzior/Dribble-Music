@@ -2,18 +2,28 @@
   <div *ngIf="topArtists.length > 0; else errorTemplate" class="itemList">
     <ul>
       <div class="legend">
-        <span></span> - Popularity based on recent activity, play count and global popularity
+        <p>
+          <span></span> - Popularity based on recent activity, play count and global popularity
+        </p>
+        <h2>
+          Most listened artists:
+        </h2>
       </div>
-      <li *ngFor="let artist of topArtists">
-        <div class="info">
-          <img [src]="artist.images[0].url" alt="{{ artist.name }}" width="75">
-          {{ artist.name }}
-        </div>
-        <div class="popularity-bar">
-          <div 
-          class="popularity-fill" [style.width]="artist.popularity + '%'"></div>
-        </div>
-      </li>
+      @for(artist of topArtists; track $index){
+        <li>
+          <p>{{$index+1}}.</p>
+          <div class="item">
+            <div class="info">
+              <img [src]="artist.images[0].url" alt="{{ artist.name }}" width="75">
+              {{ artist.name }}
+            </div>
+            <div class="popularity-bar">
+              <div 
+              class="popularity-fill" [style.width]="artist.popularity + '%'"></div>
+            </div>
+          </div>
+        </li>
+      }
     </ul>
   </div>
   

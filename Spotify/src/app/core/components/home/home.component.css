@@ -92,7 +92,9 @@ article{
     flex-direction: column;
     gap: 20px;
 }
-
+.s-third article{
+    gap: 100px;
+}
 .fav-artist {
   padding: 50px;
   border-radius: 20px;
@@ -147,7 +149,7 @@ article{
 
 article h1{
     font-weight: 1000;
-    font-size: 33px;
+    font-size: 40px;
 }
 table{
     z-index: 10;
@@ -203,19 +205,19 @@ h1 span{
 .spotify-area #spotify{
     font-size: 200px;
     color: var(--spotify-green);
-    /* filter: drop-shadow(0 0 7px var(--spotify-green)); */
+    filter: drop-shadow(0 0 30px #000000);
 
 }
 .spotify-area #plug{
     font-size: 50px;
-    color: var(--grey-transparent);
+    color: #fff;
     transform: rotate(90deg);
 }
 
 .spotify-area img{
     height: 225px;
     width: 225px;
-    /* filter: drop-shadow(0 0 10px var(--logo-dark-blue)); */
+    filter: drop-shadow(0 0 30px #000000);
 }
 
 section img.background{
