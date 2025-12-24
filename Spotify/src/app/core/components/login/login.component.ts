@@ -13,8 +13,17 @@ import { ProfileService } from '../../services/profile.service';
 export class LoginComponent implements OnInit{
   constructor(private _authService: AuthService, private _profileService: ProfileService){};
 
+  sessionFirst: boolean | null = true;
+
   ngOnInit(): void {
     this._authService.checkAndRefreshToken();
+    
+    if(localStorage.getItem('warning')==null){
+      localStorage.setItem('warning', 'true');
+      
+
+      this.sessionFirst = false
+    }
   }
 
   authorize(){

@@ -7,4 +7,16 @@
         <p>You are not logged in yet. To access Dribble Music features, you have to first agree with SpotifyAPI terms. Link Below will redirect you to external spotify website.</p>
         <button (click)="authorize()">Log in via <span>Spotify</span></button>
     </div>
+    @if(sessionFirst == false){
+        <div class="disclaimer">
+            <h2>Warning<i class="bi bi-exclamation-circle"></i></h2>
+            <p>This website uses the Spotify Web API, which is subject to access limitations imposed by Spotify.
+    Due to these limitations, the application functions correctly only for users who have been explicitly granted access by the creator.
+    
+    If you do not have access, some features may be unavailable or not work as intended.
+    To request access, please contact the creator directly.</p>
+    
+    <button (click)="sessionFirst= !sessionFirst">I understand</button>
+        </div>
+    }
 </main>
