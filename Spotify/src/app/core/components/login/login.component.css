@@ -46,16 +46,6 @@ background: linear-gradient(124deg, rgba(29,185,84,0.8711134111847865) 0%, rgba(
     width: 80%;
 }
 
-@media (max-width: 900px){
-    .center-area{
-        padding: 30px;
-        width: 90vw;
-        
-    }
-    .center-area h1{
-        font-size: 35px;
-    }
-}
 
 .disclaimer{
     position: absolute;
@@ -109,4 +99,33 @@ background: linear-gradient(124deg, rgba(29,185,84,0.8711134111847865) 0%, rgba(
 .disclaimer button:hover{
     background-color: #9c8282;
     color: #fff;
+}
+@media (max-width: 900px){
+    .center-area{
+        padding: 30px;
+        width: 67vw;
+
+        text-align: center;
+        
+    }
+    .center-area h1{
+        font-size: 35px;
+        text-align: center;
+    }
+    .disclaimer{
+        font-size: 15px;
+        width: 300px;
+    }
+    .disclaimer h2, .disclaimer h2>i{
+        font-size: 35px;
+        gap: 10px;
+    }
+    .disclaimer p{
+        width: 100%;
+    }
+    .disclaimer button{
+        font-size: 15px;
+        width: 75%;
+        padding: 10px;
+    }
 }

@@ -20,8 +20,6 @@ export class LoginComponent implements OnInit{
     
     if(localStorage.getItem('warning')==null){
       localStorage.setItem('warning', 'true');
-      
-
       this.sessionFirst = false
     }
   }
